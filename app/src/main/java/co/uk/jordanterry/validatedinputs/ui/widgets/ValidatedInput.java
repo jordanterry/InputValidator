@@ -31,6 +31,8 @@ public abstract class ValidatedInput<T extends TextView> extends LinearLayout
 
     private List<Validator> validators;
 
+    private OnFocusChangeListener onFocusChangeListener;
+
     public ValidatedInput(Context context) {
         super(context);
         initView(context);
@@ -82,6 +84,7 @@ public abstract class ValidatedInput<T extends TextView> extends LinearLayout
         validators = new ArrayList<>();
         validatedContainer = (TextInputLayout) findViewById(R.id.validated_container);
         validatedEditText = (TextInputEditText) findViewById(R.id.validated_input);
+        onFocusChangeListener = validatedEditText.getOnFocusChangeListener();
         validatedEditText.setOnFocusChangeListener(this);
         if (hint != null) {
             validatedContainer.setHint(hint);
@@ -90,8 +93,6 @@ public abstract class ValidatedInput<T extends TextView> extends LinearLayout
 
     @Override
     public void onFocusChange(View view, boolean isFocused) {
-        validatedContainer.setHintAnimationEnabled(true);
-        validatedContainer.setHintEnabled(true);
         if (isFocused) {
             validatedContainer.setErrorEnabled(false);
             validatedContainer.setError(null);

@@ -1,8 +1,6 @@
 package co.uk.jordanterry.validatedinputs.ui.widgets;
 
 import android.content.Context;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.EditText;
@@ -13,7 +11,7 @@ import co.uk.jordanterry.validatoredittext.R;
 /**
  * A Validated Edit Text contains content will be checked against a set of {@link Validator}s
  */
-public class ValidatedEditText extends ValidatedInput<EditText> implements TextWatcher {
+public class ValidatedEditText extends ValidatedInput<EditText> {
 
     public ValidatedEditText(Context context) {
         super(context);
@@ -40,19 +38,5 @@ public class ValidatedEditText extends ValidatedInput<EditText> implements TextW
 
 
 
-    @Override
-    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-    }
-
-    @Override
-    public void afterTextChanged(Editable editable) {
-
-    }
 
 }
