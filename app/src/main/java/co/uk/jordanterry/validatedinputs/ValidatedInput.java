@@ -1,4 +1,4 @@
-package co.uk.jordanterry.validatedinputs.ui.widgets;
+package co.uk.jordanterry.validatedinputs;
 
 import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
@@ -23,10 +23,20 @@ public class ValidatedInput<T extends TextView> implements View.OnFocusChangeLis
     private List<Validator> validators;
 
 
-    public static <T extends TextView> ValidatedInput on(T input) {
+    /**
+     * Create a validated input passed into the method.
+     * @param input The input to be validated
+     * @param <T> a generic object that extends TextView
+     * @return Validated Input object
+     */
+    public static <T extends TextView> ValidatedInput with(T input) {
         return new ValidatedInput(input);
     }
 
+    /**
+     * Constructor for the ValidatedInput
+     * @param input
+     */
     public ValidatedInput(T input) {
         validators = new ArrayList<>();
         this.input = input;
@@ -65,8 +75,9 @@ public class ValidatedInput<T extends TextView> implements View.OnFocusChangeLis
      * Add a new validator to the validated input to be checked against
      * @param validator The validator
      */
-    public void addValidator(Validator validator) {
+    public ValidatedInput<T> addValidator(Validator validator) {
         validators.add(validator);
+        return this;
     }
 
     @Override
