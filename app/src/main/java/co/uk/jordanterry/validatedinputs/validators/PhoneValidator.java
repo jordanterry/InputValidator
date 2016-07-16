@@ -1,5 +1,7 @@
 package co.uk.jordanterry.validatedinputs.validators;
 
+import InputValidator.Validator;
+
 /**
  * A {@link Validator} to validate a phone number
  */

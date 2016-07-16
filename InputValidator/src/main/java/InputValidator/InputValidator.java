@@ -1,4 +1,4 @@
-package co.uk.jordanterry.validatedinputs;
+package InputValidator;
 
 import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
@@ -9,12 +9,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.uk.jordanterry.validatedinputs.validators.Validator;
-
 /**
  * An abstract class that contains base logic for a Validated Input
  */
-public class ValidatedInput<T extends TextView> implements View.OnFocusChangeListener, TextWatcher {
+public class InputValidator<T extends TextView> implements View.OnFocusChangeListener, TextWatcher {
 
     protected TextInputLayout inputParent;
 
@@ -29,15 +27,15 @@ public class ValidatedInput<T extends TextView> implements View.OnFocusChangeLis
      * @param <T> a generic object that extends TextView
      * @return Validated Input object
      */
-    public static <T extends TextView> ValidatedInput with(T input) {
-        return new ValidatedInput(input);
+    public static <T extends TextView> InputValidator with(T input) {
+        return new InputValidator(input);
     }
 
     /**
      * Constructor for the ValidatedInput
      * @param input
      */
-    public ValidatedInput(T input) {
+    private InputValidator(T input) {
         validators = new ArrayList<>();
         this.input = input;
         if (input.getParent() instanceof TextInputLayout) {
@@ -75,9 +73,13 @@ public class ValidatedInput<T extends TextView> implements View.OnFocusChangeLis
      * Add a new validator to the validated input to be checked against
      * @param validator The validator
      */
-    public ValidatedInput<T> addValidator(Validator validator) {
+    public InputValidator<T> addValidator(Validator validator) {
         validators.add(validator);
         return this;
+    }
+
+    public T getInput() {
+        return input;
     }
 
     @Override

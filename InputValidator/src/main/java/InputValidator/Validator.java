@@ -1,4 +1,4 @@
-package co.uk.jordanterry.validatedinputs.validators;
+package InputValidator;
 
 /**
  * The Validator interface defines an object that is used to validate input to a {@link ValidatedEditText}

@@ -3,6 +3,8 @@ package co.uk.jordanterry.validatedinputs.validators;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import InputValidator.Validator;
+
 /**
  * A {@link Validator} to check if an e-mail is valid.
  */
