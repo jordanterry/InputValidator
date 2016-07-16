@@ -7,9 +7,18 @@ import co.uk.jordanterry.validatedinputs.ui.widgets.ValidatedEditText;
  */
 public interface Validator {
 
+    /**
+     * Validate the input of the input
+     * @param input the value from the input
+     * @return Return false if an error should be displayed. True if there input if valid.
+     */
     boolean validate(String input);
 
 
+    /**
+     * A string to be displayed if the validation has failed
+     * @return a String
+     */
     String getValidationMessage();
 
 }

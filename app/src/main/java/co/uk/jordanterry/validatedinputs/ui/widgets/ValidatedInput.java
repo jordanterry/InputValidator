@@ -90,6 +90,8 @@ public abstract class ValidatedInput<T extends TextView> extends LinearLayout
 
     @Override
     public void onFocusChange(View view, boolean isFocused) {
+        validatedContainer.setHintAnimationEnabled(true);
+        validatedContainer.setHintEnabled(true);
         if (isFocused) {
             validatedContainer.setErrorEnabled(false);
             validatedContainer.setError(null);
