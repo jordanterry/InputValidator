@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Validator EditText</string>
+    <string name="test_error">Here is an error!</string>
 </resources>

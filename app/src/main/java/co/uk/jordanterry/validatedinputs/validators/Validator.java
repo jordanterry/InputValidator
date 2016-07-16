@@ -1,7 +1,5 @@
 package co.uk.jordanterry.validatedinputs.validators;
 
-import android.support.annotation.StringRes;
-
 import co.uk.jordanterry.validatedinputs.ui.widgets.ValidatedEditText;
 
 /**
@@ -9,9 +7,9 @@ import co.uk.jordanterry.validatedinputs.ui.widgets.ValidatedEditText;
  */
 public interface Validator {
 
-    boolean validate();
+    boolean validate(String input);
 
-    @StringRes
-    int getMessage();
+
+    String getValidationMessage();
 
 }
