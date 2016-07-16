@@ -1,102 +1,46 @@
 package co.uk.jordanterry.validatedinputs.ui.widgets;
 
-import android.annotation.TargetApi;
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.os.Build;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.util.AttributeSet;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import co.uk.jordanterry.validatedinputs.validators.Validator;
-import co.uk.jordanterry.validatoredittext.R;
 
 /**
  * An abstract class that contains base logic for a Validated Input
  */
-public abstract class ValidatedInput<T extends TextView> extends LinearLayout
-        implements View.OnFocusChangeListener {
+public class ValidatedInput<T extends TextView> implements View.OnFocusChangeListener, TextWatcher {
 
-    protected TextInputLayout validatedContainer;
+    protected TextInputLayout inputParent;
 
-    protected TextInputEditText validatedEditText;
-
-    private String hint;
+    protected T input;
 
     private List<Validator> validators;
 
-    private OnFocusChangeListener onFocusChangeListener;
 
-    public ValidatedInput(Context context) {
-        super(context);
-        initView(context);
+    public static <T extends TextView> ValidatedInput on(T input) {
+        return new ValidatedInput(input);
     }
 
-    public ValidatedInput(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        initAttrs(context, attrs);
-        initView(context);
-    }
-
-    public ValidatedInput(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initAttrs(context, attrs);
-        initView(context);
-    }
-
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public ValidatedInput(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        initAttrs(context, attrs);
-        initView(context);
-    }
-
-
-    /**
-     * Initialise any views
-     * @param context the context
-     */
-    protected abstract void initView(Context context);
-
-    /**
-     * Initialise any attributes for the view
-     */
-    protected void initAttrs(Context context, AttributeSet attrs) {
-        TypedArray typedArray;
-        typedArray = context
-                .obtainStyledAttributes(attrs, R.styleable.ValidatedEditText);
-        hint = typedArray
-                .getString(R.styleable.ValidatedEditText_hint);
-        typedArray.recycle();
-    }
-
-
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
+    public ValidatedInput(T input) {
         validators = new ArrayList<>();
-        validatedContainer = (TextInputLayout) findViewById(R.id.validated_container);
-        validatedEditText = (TextInputEditText) findViewById(R.id.validated_input);
-        onFocusChangeListener = validatedEditText.getOnFocusChangeListener();
-        validatedEditText.setOnFocusChangeListener(this);
-        if (hint != null) {
-            validatedContainer.setHint(hint);
+        this.input = input;
+        if (input.getParent() instanceof TextInputLayout) {
+            inputParent = (TextInputLayout) input.getParent();
         }
+        input.addTextChangedListener(this);
+        input.setOnFocusChangeListener(this);
     }
+
 
     @Override
     public void onFocusChange(View view, boolean isFocused) {
-        if (isFocused) {
-            validatedContainer.setErrorEnabled(false);
-            validatedContainer.setError(null);
-        } else {
+        if (!isFocused) {
             validate(((T) view).getText().toString());
         }
     }
@@ -105,10 +49,14 @@ public abstract class ValidatedInput<T extends TextView> extends LinearLayout
     /**
      * Validate the input of the text view with all validators
      */
-    private void validate(String input) {
+    private void validate(String value) {
         for (int i = 0; i < validators.size(); i++) {
-            if (!validators.get(i).validate(input)) {
-                validatedContainer.setError(validators.get(i).getValidationMessage());
+            if (!validators.get(i).validate(value)) {
+                if (inputParent != null) {
+                    inputParent.setError(validators.get(i).getValidationMessage());
+                } else {
+                    input.setError(validators.get(i).getValidationMessage());
+                }
             }
         }
     }
@@ -121,4 +69,23 @@ public abstract class ValidatedInput<T extends TextView> extends LinearLayout
         validators.add(validator);
     }
 
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        // Empty
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        if (inputParent != null) {
+            inputParent.setErrorEnabled(false);
+            inputParent.setError(null);
+        } else {
+            input.setError(null);
+        }
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+        // Empty
+    }
 }
