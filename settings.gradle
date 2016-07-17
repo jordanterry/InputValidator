@@ -1,1 +1,1 @@
-include ':app', ':InputValidator'
+include ':TestActivity', ':InputValidator'
