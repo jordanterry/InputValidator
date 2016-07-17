@@ -78,6 +78,23 @@ public class InputValidator<T extends TextView> implements View.OnFocusChangeLis
         return this;
     }
 
+
+    /**
+     * A method to determine the validity of the input content without displaying an error.
+     * @return
+     */
+    public boolean isValid() {
+
+        String value = input.getText().toString();
+        for (int i = 0; i < validators.size(); i++) {
+            if (!validators.get(i).validate(value)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public T getInput() {
         return input;
     }
