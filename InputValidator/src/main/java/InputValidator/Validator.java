@@ -1,7 +1,7 @@
 package InputValidator;
 
 /**
- * The Validator interface defines an object that is used to validate input to a {@link ValidatedEditText}
+ * The Validator interface defines an object that is used to validate input
  */
 public interface Validator {
 
