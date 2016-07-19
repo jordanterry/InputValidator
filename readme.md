@@ -34,6 +34,12 @@ public class TextEmptyValidator implements Validator {
 
 ```
 
+## How to use
+
+Add this to your gradle dependencies.
+
+`compile 'uk.co.jordanterry:InputValidator:0.1.1'`
+
 ## Who to contact
 
 * [Jordan Terry] (jterryweb@gmail.com)
