@@ -1,4 +1,4 @@
-package co.uk.jordanterry.validatedinputs.validators;
+package InputValidator.validators;
 
 import InputValidator.Validator;
 
