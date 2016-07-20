@@ -9,10 +9,29 @@ The Input Validator validates the content of an input when it's focus is lost. I
 
 ### Input Validator
 
-Add a validator to an EditText to throw an error if the input is empty.
+An `InputValidator` object can be created with the `ValidatorFactory` class. To create on call the `with` method and pass in any object that extends from a `TextView`.
+
+Below is an example of a `TextInputEditText` object that is wrapped in a `TextInputLayout`.
+
+```XML
+<android.support.design.widget.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.design.widget.TextInputEditText
+        android:id="@+id/first_name"
+        android:hint="@string/hint_first_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</android.support.design.widget.TextInputLayout>
+```
+
+
+The `ValidatorFactory` is used to wrap the `TextInputEditText` with a `InputValidator`.
 
 ```Java
-InputValidator inputValidator = ValidatorFactory.with((EditText) findViewById(R.id.first_name));
+InputValidator inputValidator = ValidatorFactory.with((TextInputEditText) findViewById(R.id.first_name));
 inputValidator.addValidator(new TextEmptyValidator());
 ```
 
@@ -42,7 +61,7 @@ public class TextEmptyValidator implements Validator {
 Add this to your gradle dependencies.
 
 ```Gradle
-compile 'uk.co.jordanterry:InputValidator:0.1.1'
+compile 'uk.co.jordanterry:InputValidator:0.2.1'
 ```
 
 ## Who to contact
