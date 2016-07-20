@@ -31,14 +31,14 @@ ext {
     siteUrl = 'https://github.com/jordanterry/ValidatedInputs'
     gitUrl = 'https://github.com/jordanterry/ValidatedInputs.git'
 
-    libraryVersion = '0.1.1'
+    libraryVersion = '0.2.1'
 
     developerId = 'jordanterry'
     developerName = 'Jordan Terry'
     developerEmail = 'jterryweb@gmail.com'
 
     licenseName = 'MIT License'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    licenseUrl = 'https://github.com/jordanterry/InputValidator/blob/master/license'
     allLicenses = ["MIT"]
 }
 
