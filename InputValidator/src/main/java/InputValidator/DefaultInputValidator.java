@@ -36,7 +36,7 @@ class DefaultInputValidator<T extends TextView> implements InputValidator,
      * A validation error listener. If the listener is set the library will return the validation
      * error, the input and the input parent to the listener.
      */
-    private InputValidator.OnValidationErrorListener onValidationErrorListener;
+    private InputValidator.OnValidationErrorListener<T> onValidationErrorListener;
 
 
     /**
@@ -62,10 +62,15 @@ class DefaultInputValidator<T extends TextView> implements InputValidator,
     private void validate(String value) {
         for (int i = 0; i < validators.size(); i++) {
             if (!validators.get(i).validate(value)) {
-                if (inputParent != null) {
-                    inputParent.setError(validators.get(i).getValidationMessage());
+                if (onValidationErrorListener == null) {
+                    if (inputParent != null) {
+                        inputParent.setError(validators.get(i).getValidationMessage());
+                    } else {
+                        input.setError(validators.get(i).getValidationMessage());
+                    }
                 } else {
-                    input.setError(validators.get(i).getValidationMessage());
+                    onValidationErrorListener.onError(input, inputParent,
+                            validators.get(i).getValidationMessage());
                 }
             }
         }
