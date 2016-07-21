@@ -1,4 +1,6 @@
-package InputValidator;
+package InputValidator.validators;
+
+import InputValidator.InputValidator;
 
 /**
  * The Validator interface defines an object that is used to validate input

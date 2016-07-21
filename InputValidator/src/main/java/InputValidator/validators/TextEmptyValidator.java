@@ -1,7 +1,5 @@
 package InputValidator.validators;
 
-import InputValidator.Validator;
-
 /**
  * A {@link Validator} to validate an empty text view
  */

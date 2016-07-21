@@ -9,6 +9,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import InputValidator.validators.Validator;
+
 /**
  * A default implementation of an InputValidator.
  */
@@ -29,6 +31,12 @@ class DefaultInputValidator<T extends TextView> implements InputValidator,
      * A list of validators that the input's value will be tested against
      */
     private List<Validator> validators;
+
+    /**
+     * A validation error listener. If the listener is set the library will return the validation
+     * error, the input and the input parent to the listener.
+     */
+    private InputValidator.OnValidationErrorListener<T> onValidationErrorListener;
 
 
     /**
@@ -54,10 +62,15 @@ class DefaultInputValidator<T extends TextView> implements InputValidator,
     private void validate(String value) {
         for (int i = 0; i < validators.size(); i++) {
             if (!validators.get(i).validate(value)) {
-                if (inputParent != null) {
-                    inputParent.setError(validators.get(i).getValidationMessage());
+                if (onValidationErrorListener == null) {
+                    if (inputParent != null) {
+                        inputParent.setError(validators.get(i).getValidationMessage());
+                    } else {
+                        input.setError(validators.get(i).getValidationMessage());
+                    }
                 } else {
-                    input.setError(validators.get(i).getValidationMessage());
+                    onValidationErrorListener.onError(input, inputParent,
+                            validators.get(i).getValidationMessage());
                 }
             }
         }
@@ -86,6 +99,20 @@ class DefaultInputValidator<T extends TextView> implements InputValidator,
     @Override
     public T getInput() {
         return input;
+    }
+
+    @Override
+    public boolean removeValidationErrorListener() {
+        if (onValidationErrorListener == null) {
+            return false;
+        }
+        onValidationErrorListener = null;
+        return true;
+    }
+
+    @Override
+    public void setValidationErrorListener(InputValidator.OnValidationErrorListener onValidationErrorListener) {
+        this.onValidationErrorListener = onValidationErrorListener;
     }
 
 
