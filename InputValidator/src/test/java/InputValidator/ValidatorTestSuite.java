@@ -7,6 +7,6 @@ import org.junit.runners.Suite;
  * Validator test suite
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ValidatorTests.class})
+@Suite.SuiteClasses({ValidatorTests.class, TestActivityTests.class})
 public class ValidatorTestSuite {
 }

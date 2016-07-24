@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Validator EditText</string>
+    <string name="test_error">Here is an error!</string>
+    <string name="hint_first_name">First name</string>
+    <string name="hint_last_name">Last name</string>
+    <string name="hint_email">E-mail</string>
+</resources>
