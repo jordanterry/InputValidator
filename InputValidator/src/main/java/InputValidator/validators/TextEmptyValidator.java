@@ -6,8 +6,8 @@ package InputValidator.validators;
 public class TextEmptyValidator implements Validator {
 
     @Override
-    public boolean validate(String input) {
-        return !(input == null || input.isEmpty());
+    public boolean validate(CharSequence input) {
+        return !(input == null || input.length() == 0);
     }
 
     @Override
