@@ -19,7 +19,7 @@ public class ValidatorFactoryTests {
 
     @Test
     public void testValidatorFactory() {
-        InputValidator<EditText> validator = InputValidator.Validator.with(new EditText(InstrumentationRegistry.getContext()));
+        InputValidator<EditText> validator = ValidateInputs.validate(new EditText(InstrumentationRegistry.getContext()));
         assertEquals(validator instanceof DefaultInputValidator, true);
     }
 

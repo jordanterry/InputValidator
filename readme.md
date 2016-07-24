@@ -10,7 +10,7 @@ The Input Validator validates the content of an input when it's focus is lost. I
 Add this to your gradle dependencies.
 
 ```Gradle
-compile 'uk.co.jordanterry:InputValidator:0.2.1'
+compile 'uk.co.jordanterry:InputValidator:0.3.0'
 ```
 
 

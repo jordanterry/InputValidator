@@ -34,7 +34,7 @@ ext {
     siteUrl = 'https://github.com/jordanterry/ValidatedInputs'
     gitUrl = 'https://github.com/jordanterry/ValidatedInputs.git'
 
-    libraryVersion = '0.2.1'
+    libraryVersion = '0.3'
 
     developerId = 'jordanterry'
     developerName = 'Jordan Terry'

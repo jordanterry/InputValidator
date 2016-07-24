@@ -48,7 +48,7 @@ public interface InputValidator<T extends TextView> {
         /**
          * This method will be called if there is a validation error
          * @param input The input being validated
-         * @param inputParent A {@link TextInputLayout} parent, will be null if it doesn't exit
+         * @param inputParent A TextInputLayout parent, will be null if it doesn't exit
          * @param validationMessage The error returned from the validate object
          */
         void onError(T input, TextInputLayout inputParent, String validationMessage);
