@@ -31,7 +31,7 @@ Below is an example of a `TextInputEditText` object that is wrapped in a `TextIn
 The `ValidatorFactory` is used to wrap the `TextInputEditText` with a `InputValidator`.
 
 ```Java
-InputValidator inputValidator = ValidatorFactory.with((TextInputEditText) findViewById(R.id.first_name));
+InputValidator inputValidator = ValidateInputs.validate((TextInputEditText) findViewById(R.id.first_name));
 inputValidator.addValidator(new TextEmptyValidator());
 ```
 

@@ -11,8 +11,8 @@ import InputValidator.validators.Validator;
 public interface InputValidator<T extends TextView> {
 
     /**
-     * Add a new validator to the validated input to be checked against
-     * @param validator The validator
+     * Add a new validate to the validated input to be checked against
+     * @param validator The validate
      */
     InputValidator<T> addValidator(Validator validator);
 
@@ -49,7 +49,7 @@ public interface InputValidator<T extends TextView> {
          * This method will be called if there is a validation error
          * @param input The input being validated
          * @param inputParent A {@link TextInputLayout} parent, will be null if it doesn't exit
-         * @param validationMessage The error returned from the validator object
+         * @param validationMessage The error returned from the validate object
          */
         void onError(T input, TextInputLayout inputParent, String validationMessage);
 
