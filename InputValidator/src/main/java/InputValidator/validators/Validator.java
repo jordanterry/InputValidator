@@ -1,7 +1,5 @@
 package InputValidator.validators;
 
-import InputValidator.InputValidator;
-
 /**
  * The Validator interface defines an object that is used to validate input
  */
@@ -12,7 +10,7 @@ public interface Validator {
      * @param input the value from the input
      * @return Return false if an error should be displayed. True if there input if valid.
      */
-    boolean validate(String input);
+    boolean validate(CharSequence input);
 
 
     /**
