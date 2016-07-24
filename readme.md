@@ -1,15 +1,26 @@
-# Input Validator [In Development]
+# Input Validator
 
 The input validator makes it easy to validate an input with a set of validators.
 
 The Input Validator validates the content of an input when it's focus is lost. If there is an error and a user clicks on the input again the error will dissapear when the user starts typing again.
 
 
+## How to use
+
+Add this to your gradle dependencies.
+
+```Gradle
+compile 'uk.co.jordanterry:InputValidator:0.2.1'
+```
+
+
 ## Examples
 
 ### Input Validator
 
-An `InputValidator` object can be created with the `ValidatorFactory` class. To create on call the `with` method and pass in any object that extends from a `TextView`.
+Any view that extends from a `TextView` can be validated by an `InputValidator`.
+
+An `InputValidator` object can be created with the `ValidateInputs` class. To create on call the `with` method and pass in any object that extends from a `TextView`.
 
 Below is an example of a `TextInputEditText` object that is wrapped in a `TextInputLayout`.
 
@@ -28,7 +39,7 @@ Below is an example of a `TextInputEditText` object that is wrapped in a `TextIn
 ```
 
 
-The `ValidatorFactory` is used to wrap the `TextInputEditText` with a `InputValidator`.
+The `ValidateInputs` is used to wrap the `TextInputEditText` with a `InputValidator`.
 
 ```Java
 InputValidator inputValidator = ValidateInputs.validate((TextInputEditText) findViewById(R.id.first_name));
@@ -55,15 +66,6 @@ public class TextEmptyValidator implements Validator {
 }
 
 ```
-
-## How to use
-
-Add this to your gradle dependencies.
-
-```Gradle
-compile 'uk.co.jordanterry:InputValidator:0.2.1'
-```
-
 ## Who to contact
 
 * [Jordan Terry] (jterryweb@gmail.com)
