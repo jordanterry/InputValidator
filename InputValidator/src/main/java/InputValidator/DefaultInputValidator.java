@@ -57,7 +57,7 @@ class DefaultInputValidator<T extends TextView> implements InputValidator,
 
 
     /**
-     * Validate the input of the text view with all validators
+     * Validate the input of the text view validate all validators
      */
     private void validate(String value) {
         for (int i = 0; i < validators.size(); i++) {

@@ -5,7 +5,7 @@ import android.widget.TextView;
 /**
  * A factory to create an {@link InputValidator}
  */
-public class ValidatorFactory {
+public class ValidateInputs {
 
     /**
      * Create a validated input passed into the method.
@@ -13,7 +13,7 @@ public class ValidatorFactory {
      * @param <T> a generic object that extends TextView
      * @return Validated Input object
      */
-    public static <T extends TextView> InputValidator with(T input) {
+    public static <T extends TextView> InputValidator validate(T input) {
         return new DefaultInputValidator<>(input);
     }
 
