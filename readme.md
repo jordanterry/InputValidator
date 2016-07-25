@@ -1,54 +1,24 @@
 # Input Validator
 
-The input validator makes it easy to validate an input with a set of validators.
+Input validation and error displaying for any Android view that extends from a TextView. This library is born from frustration towards complex if statements and a desire to make form validation much, much easier.
 
-The Input Validator validates the content of an input when it's focus is lost. If there is an error and a user clicks on the input again the error will dissapear when the user starts typing again.
+What does the library do? 
 
+* Wrap around any `View` extending from `TextView`
+* Allow multiple `Validator` objects to be attached.
+* When the `View` loses focus the input will be validated against the `Validator`s
+* Display an error message if the input isn't successfully validated
+	* If the input is wrapped in a `TextInputLayout` it will be used to display the message
+	* If the input is not wrapped in a `TextInputLayout` the error will be shown in the inpput
+	* The above can be overriden using an `OnValidationErrorListener` which allows you to do whatever you want with the error received 
 
-## How to use
-
-Add this to your gradle dependencies.
-
-```Gradle
-compile 'uk.co.jordanterry:InputValidator:0.3.0'
-```
-
-
-## Examples
-
-### Input Validator
-
-Any view that extends from a `TextView` can be validated by an `InputValidator`.
-
-An `InputValidator` object can be created with the `ValidateInputs` class. To create on call the `with` method and pass in any object that extends from a `TextView`.
-
-Below is an example of a `TextInputEditText` object that is wrapped in a `TextInputLayout`.
-
-```XML
-<android.support.design.widget.TextInputLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <android.support.design.widget.TextInputEditText
-        android:id="@+id/first_name"
-        android:hint="@string/hint_first_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-</android.support.design.widget.TextInputLayout>
-```
-
-
-The `ValidateInputs` is used to wrap the `TextInputEditText` with a `InputValidator`.
 
 ```Java
 InputValidator inputValidator = ValidateInputs.validate((TextInputEditText) findViewById(R.id.first_name));
 inputValidator.addValidator(new TextEmptyValidator());
 ```
 
-When an InputValidator is created it will look at the parent of the input being validated. If the parent is a `TextInputLayout` it will display any error messages there, if it isn't the error message will be shown within the input.
-
-### Validator
+By implementing the `Validator` object you can create your own validation methods.
 
 ```Java
 public class TextEmptyValidator implements Validator {
@@ -66,6 +36,22 @@ public class TextEmptyValidator implements Validator {
 }
 
 ```
+
+
+## How to use
+
+Add this to your gradle dependencies.
+
+```Gradle
+compile 'uk.co.jordanterry:InputValidator:0.3.0'
+```
+
+## Want to contribute? 
+
+Great! If you notice anything that I could be doing better please create an issue and let me know. 
+
+I would also LOVE to know if anyone has any `Validator` ideas, the more the merrier.
+
 ## Who to contact
 
 * [Jordan Terry] (jterryweb@gmail.com)
