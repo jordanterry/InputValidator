@@ -1,3 +1,5 @@
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-InputValidator-green.svg?style=true)](https://android-arsenal.com/details/1/3981)
+
 # Input Validator
 
 Input validation and error displaying for any Android view that extends from a TextView. This library is born from frustration towards complex if statements and a desire to make form validation much, much easier.
