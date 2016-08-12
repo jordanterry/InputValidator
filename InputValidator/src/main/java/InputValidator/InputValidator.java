@@ -53,6 +53,14 @@ public interface InputValidator<T extends TextView> {
          */
         void onError(T input, TextInputLayout inputParent, String validationMessage);
 
+
+        /**
+         * This method will be called when an input is cleared.
+         * @param input The input losing focus
+         * @param inputParent The parent of the input losing focus
+         */
+        void onInputClear(T input, TextInputLayout inputParent);
+
     }
 
 

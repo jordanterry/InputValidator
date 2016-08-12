@@ -29,6 +29,11 @@ public class TestActivity extends Activity {
             public void onError(TextView input, TextInputLayout inputParent, String validationMessage) {
                 ((TextView) findViewById(R.id.error_text)).setText(validationMessage);
             }
+
+            @Override
+            public void onInputClear(TextView input, TextInputLayout inputParent) {
+                ((TextView) findViewById(R.id.error_text)).setText("");
+            }
         });
 
     }

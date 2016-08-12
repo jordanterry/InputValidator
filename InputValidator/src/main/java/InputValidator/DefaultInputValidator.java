@@ -15,17 +15,17 @@ import InputValidator.validators.Validator;
  * A default implementation of an InputValidator.
  */
 class DefaultInputValidator<T extends TextView> implements InputValidator,
-        View.OnFocusChangeListener, TextWatcher {
+        View.OnFocusChangeListener, TextWatcher, InputValidator.OnValidationErrorListener<T> {
 
     /**
      * The inputs parent if it exists
      */
-    protected TextInputLayout inputParent;
+    private TextInputLayout inputParent;
 
     /**
      * The input being validated
      */
-    protected T input;
+    private T input;
 
     /**
      * A list of validators that the input's value will be tested against
@@ -51,6 +51,7 @@ class DefaultInputValidator<T extends TextView> implements InputValidator,
         }
         input.addTextChangedListener(this);
         input.setOnFocusChangeListener(this);
+        onValidationErrorListener = this;
     }
 
 
@@ -62,16 +63,9 @@ class DefaultInputValidator<T extends TextView> implements InputValidator,
     private void validate(String value) {
         for (int i = 0; i < validators.size(); i++) {
             if (!validators.get(i).validate(value)) {
-                if (onValidationErrorListener == null) {
-                    if (inputParent != null) {
-                        inputParent.setError(validators.get(i).getValidationMessage());
-                    } else {
-                        input.setError(validators.get(i).getValidationMessage());
-                    }
-                } else {
-                    onValidationErrorListener.onError(input, inputParent,
-                            validators.get(i).getValidationMessage());
-                }
+                onValidationErrorListener.onError(input, inputParent,
+                        validators.get(i).getValidationMessage());
+
             }
         }
     }
@@ -131,16 +125,31 @@ class DefaultInputValidator<T extends TextView> implements InputValidator,
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        onValidationErrorListener.onInputClear(input, inputParent);
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+        // Empty
+    }
+
+
+    @Override
+    public void onError(T input, TextInputLayout inputParent, String validationMessage) {
+        if (inputParent != null) {
+            inputParent.setError(validationMessage);
+        } else {
+            input.setError(validationMessage);
+        }
+    }
+
+    @Override
+    public void onInputClear(T input, TextInputLayout inputParent) {
         if (inputParent != null) {
             inputParent.setErrorEnabled(false);
             inputParent.setError(null);
         } else {
             input.setError(null);
         }
-    }
-
-    @Override
-    public void afterTextChanged(Editable editable) {
-        // Empty
     }
 }
