@@ -13,6 +13,8 @@ import InputValidator.validators.Validator;
 
 /**
  * A default implementation of an InputValidator.
+ *
+ * @author Jordan Terry
  */
 class DefaultInputValidator<T extends TextView> implements InputValidator,
         View.OnFocusChangeListener, TextWatcher {
@@ -38,9 +40,9 @@ class DefaultInputValidator<T extends TextView> implements InputValidator,
      */
     private InputValidator.OnValidationErrorListener<T> onValidationErrorListener;
 
-
     /**
-     * Constructor for the ValidatedInput
+     * Constructor for the ValidatedInput.
+     *
      * @param input An input to be validated that extends from a TextView
      */
     public DefaultInputValidator(T input) {
@@ -52,9 +54,6 @@ class DefaultInputValidator<T extends TextView> implements InputValidator,
         input.addTextChangedListener(this);
         input.setOnFocusChangeListener(this);
     }
-
-
-
 
     /**
      * Validate the input of the text view validate all validators
@@ -81,7 +80,6 @@ class DefaultInputValidator<T extends TextView> implements InputValidator,
         validators.add(validator);
         return this;
     }
-
 
     @Override
     public boolean isValid() {
@@ -115,14 +113,12 @@ class DefaultInputValidator<T extends TextView> implements InputValidator,
         this.onValidationErrorListener = onValidationErrorListener;
     }
 
-
     @Override
     public void onFocusChange(View view, boolean isFocused) {
         if (!isFocused) {
             validate(((T) view).getText().toString());
         }
     }
-
 
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

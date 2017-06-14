@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import InputValidator.InputValidator;
 import InputValidator.ValidateInputs;
-import InputValidator.validators.TextEmptyValidator;
+import InputValidator.validators.IsEmptyValidator;
 import co.uk.jordanterry.inputvalidator.R;
 
 
@@ -22,9 +22,9 @@ public class TestActivity extends Activity {
         setTheme(R.style.Theme_Design_Light);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-        ValidateInputs.validate((TextView) findViewById(R.id.first_name)).addValidator(new TextEmptyValidator());
-        ValidateInputs.validate((TextView) findViewById(R.id.last_name)).addValidator(new TextEmptyValidator());
-        ValidateInputs.validate((TextView) findViewById(R.id.email)).addValidator(new TextEmptyValidator()).setValidationErrorListener(new InputValidator.OnValidationErrorListener() {
+        ValidateInputs.validate((TextView) findViewById(R.id.first_name)).addValidator(new IsEmptyValidator());
+        ValidateInputs.validate((TextView) findViewById(R.id.last_name)).addValidator(new IsEmptyValidator());
+        ValidateInputs.validate((TextView) findViewById(R.id.email)).addValidator(new IsEmptyValidator()).setValidationErrorListener(new InputValidator.OnValidationErrorListener() {
             @Override
             public void onError(TextView input, TextInputLayout inputParent, String validationMessage) {
                 ((TextView) findViewById(R.id.error_text)).setText(validationMessage);

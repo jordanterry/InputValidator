@@ -1,9 +1,11 @@
 package InputValidator.validators;
 
 /**
- * A {@link Validator} to validate an empty text view
+ * A {@link Validator} to validate an empty text view.
+ *
+ * @author Jordan Terry
  */
-public class TextEmptyValidator implements Validator {
+public class IsEmptyValidator implements Validator {
 
     @Override
     public boolean validate(CharSequence input) {
@@ -14,5 +16,4 @@ public class TextEmptyValidator implements Validator {
     public String getValidationMessage() {
         return "The text view is empty.";
     }
-
 }

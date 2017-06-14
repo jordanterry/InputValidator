@@ -3,7 +3,7 @@ package InputValidator;
 import org.junit.Before;
 import org.junit.Test;
 
-import InputValidator.validators.TextEmptyValidator;
+import InputValidator.validators.IsEmptyValidator;
 import InputValidator.validators.Validator;
 
 import static junit.framework.Assert.assertEquals;
@@ -18,7 +18,7 @@ public class ValidatorTests {
 
     @Before
     public void setUp() {
-        testValidator = new TextEmptyValidator();
+        testValidator = new IsEmptyValidator();
     }
 
 

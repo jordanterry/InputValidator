@@ -1,7 +1,9 @@
 package InputValidator.validators;
 
 /**
- * A {@link Validator} to validate an empty text view
+ * A {@link Validator} to validate an empty text view.
+ *
+ * @author Jordan Terry
  */
 public class IsNumeric implements Validator {
 
@@ -19,5 +21,4 @@ public class IsNumeric implements Validator {
     public String getValidationMessage() {
         return "The text isn't numeric.";
     }
-
 }
