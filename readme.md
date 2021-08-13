@@ -56,4 +56,4 @@ I would also LOVE to know if anyone has any `Validator` ideas, the more the merr
 
 ## Who to contact
 
-* [Jordan Terry] (jterryweb@gmail.com)
+* [Jordan Terry](jordanfterry@gmail.com)
